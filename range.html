@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Range</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+        }
+       
+        .range{
+            width: 50vmin;
+            height: 20vmin;
+            
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            color: royalblue;
+            padding: 10px;
+        }
+        .element{
+            width: 70vmin;
+            height: 20vmin;
+            
+            position: absolute;
+            top: 200px;
+            left: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+
+        }
+        .field{
+            width: 98%;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sliderValue{
+            width: 80%;
+            height: 40px;
+            position: relative;
+            line-height: 2;
+            text-align: center;
+            vertical-align: middle;
+            
+           
+        }
+        .value{
+            display: inline-block;
+            width: 13%;
+            height: 90%;
+            color: aliceblue;
+            background-color: lightpink;
+            clip-path: circle(50% at 50% 50%);
+            position: absolute;
+            bottom: -15px;
+        }
+        #range{
+            -webkit-appearance: none;/* Override default CSS styles */
+            width: 80%;
+            height: 3px;
+            opacity: 0.7;
+            outline: none; /* Remove outline */
+            background: lightgreen;
+            border-radius: 16px;
+
+        }
+
+
+        #range::-webkit-slider-thumb  {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            background-color: royalblue;
+            border: 2px solid aliceblue;
+            border-radius: 50%;          
+            cursor: pointer;
+        
+        }
+
+        #range::-moz-range-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            background-color: rgb(180, 180, 60);
+            border: 2px solid lightcoral;
+            border-radius: 50%;          
+            cursor: pointer;
+        }
+        
+        .min-value,.max-value{
+            width: 7%;
+            height: 50%;
+            color: darkorange;
+
+           
+        }
+        .v{
+            width: 50px;
+            height: 30px;
+            text-align: center;
+        }
+        code{
+            color: darkcyan;
+            background-color: #201e1e;
+            padding: 10px;
+        }
+        code span{
+            color: royalblue;
+        }
+        .el-value{
+            color: orangered;
+        }
+        .object{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            right: 10px;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+        .object code{
+            height: 40%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            
+        }
+        #object #r,#object #m,#object #ma, #object #o-value {
+            margin-left: 30px;
+            color: aqua;
+        }
+        #r #r-value,#m #m-value,#ma #ma-value,#o-value #o-values-value{
+            color: orange;
+        }
+        .editor{
+            background-color: #201e1e;
+            color: aliceblue;
+            width: 100%;
+            height: 20%;
+        }
+
+
+
+        
+
+
+    </style>
+</head>
+<body>
+    <div class="range">
+        <div class="sliderValue">
+          <span class="value">100</span>
+        </div>
+        <div class="field">
+          <div class="min-value">0</div>
+          <input id="range" type="range" min="-30" max="100" value="100" steps="2">
+          <div class="max-value">200</div>
+        </div>
+    </div>
+    <div class="element">
+        <div class="input-element">
+            <span>
+                <code>input <span>type="<span class="el-value">range</span>" min="<span id="min-v" class="el-value">0</span>" max="<span id="max-v" class="el-value">0</span>" value="<span id="value-v" class="el-value">0</span>"</code>
+            </span>
+        </div>
+        <div  class="src">
+            <span>Min: <input type="text" class="v min-T"></span>
+            <span>Max: <input type="text" class="v max-T"></span>
+            <span>Value: <input type="text" class="v value-T"></span>
+        </div>
+       
+    </div>
+    <div class="object">
+        <h3>জাভাস্ত্রিপ্ট এই কোড গুলো কে আসলে অবজেক্ট হিসেবে চিন্তা করে। এখানে input একটি অবজেক্ট</h3>
+        <code id="object">
+            input={
+                <span id="r">type: "<span id="r-value">range</span>",</span>
+                <span id="m">min: "<span id="m-value">30</span>",</span>
+                <span id="ma">max: "<span id="ma-value">100</span>",</span>
+                <span id="o-value">value: "<span id="o-values-value">100</span>"</span>
+            }
+
+        </code>
+        <div class="editor" contenteditable="true">
+
+        </div>
+        <button class="run">Run</button>
+
+    </div>
+    
+</body>
+<script>
+    const sliderValue = document.querySelector("span");
+    const inputSlider = document.querySelector("input");
+    const minT = document.querySelector(".min-T");
+    const maxT = document.querySelector(".max-T");
+    const valueT = document.querySelector(".value-T");
+    const elMin=document.querySelector("#min-v");
+    const elMax=document.querySelector("#max-v");
+    const elValue=document.querySelector("#value-v");
+    const oMin=document.querySelector("#m-value");
+    const oMax=document.querySelector("#ma-value");
+    const oValue=document.querySelector("#o-values-value");
+    const run=document.querySelector(".run");
+    document.querySelector(".min-value").textContent=inputSlider.min;
+    document.querySelector(".max-value").textContent=inputSlider.max;
+    let value = inputSlider.value;
+    sliderValue.textContent = value;
+    elMin.textContent=inputSlider.min;
+    oMin.textContent=inputSlider.min;
+    elMax.textContent=inputSlider.max;
+    oMax.textContent=inputSlider.max;
+    elValue.textContent=inputSlider.value;
+    oValue.textContent=inputSlider.value;
+    valueT.value=inputSlider.value;
+    minT.value=inputSlider.min;
+    maxT.value=inputSlider.max;
+    let distance = inputSlider.max-inputSlider.min;
+    let percent=((value-inputSlider.min)*100)/distance;
+    sliderValue.style.left = `${percent-5}%`;
+    inputSlider.oninput = (() =>{
+      elValue.textContent=inputSlider.value;
+      oValue.textContent=inputSlider.value;
+      valueT.value=inputSlider.value;
+      value = inputSlider.value;
+      distance = inputSlider.max-inputSlider.min;
+      percent=((value-inputSlider.min)*100)/distance;
+      sliderValue.textContent = value;
+      sliderValue.style.left = `${percent-5}%`;
+    })
+    const changeMin=(e)=>{
+
+        let val = parseInt(minT.value);
+        console.log(val);
+        document.querySelector(".min-value").textContent=val;
+        elMin.textContent=val;
+        oMin.textContent=value;
+        inputSlider.min=val;
+
+
+
+    }
+    const changeMax=(e)=>{
+
+        let val = parseInt(maxT.value);
+        console.log(val);
+        document.querySelector(".max-value").textContent=val;
+        elMax.textContent=val;
+        oMax.textContent=val;
+        inputSlider.max=val;
+        value = inputSlider.value;
+        distance = inputSlider.max-inputSlider.min;
+        percent=((value-inputSlider.min)*100)/distance;
+        sliderValue.textContent = value;
+        sliderValue.style.left = `${percent-5}%`;
+    }
+    const changeValue=()=>{
+        let val = parseInt(valueT.value);
+        if(val>inputSlider.max || val<inputSlider.min){
+            return;
+        }
+        console.log(val);
+        document.querySelector(".max-value").textContent=val;
+        elValue.textContent=val;
+        oValue.textContent=val;
+        inputSlider.value=val;
+        value = inputSlider.value;
+        distance = inputSlider.max-inputSlider.min;
+        percent=((value-inputSlider.min)*100)/distance;
+        sliderValue.textContent = value;
+        sliderValue.style.left = `${percent-5}%`;
+
+    }
+
+    valueT.onchange=changeValue;
+    maxT.onchange=changeMax;
+    minT.onchange=changeMin;
+  
+
+    
+</script>
+</html>
