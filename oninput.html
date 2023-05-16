@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oninput</title>
+    <style>
+        body{
+            background-color: #251f1f33;
+        }
+        .change{
+            width: 200px;
+            height: 80px;
+            background-color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top:200px;
+            left:20px;
+        }
+        #chage-width{
+            width: 90%;
+            height: 90%;
+
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: lightcoral;
+            position: absolute;
+            top:200px;
+            left:50%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="change"> 
+        <input id="change-width" min="0" max="300" value="100" type="range" >
+    </div>
+    <div class="box"></div>
+    
+</body>
+<script>
+    const box=document.querySelector(".box");
+    const range=document.querySelector("#change-width");
+
+    range.oninput=()=>{
+        box.style.width=(range.value)+"px";
+    }
+</script>
+</html>

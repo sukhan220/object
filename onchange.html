@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oninput</title>
+    <style>
+        body{
+            background-color: #251f1f33;
+        }
+        .change{
+            width: 200px;
+            height: 80px;
+            background-color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top:200px;
+            left:20px;
+        }
+        #chage-width{
+            width: 90%;
+            height: 90%;
+
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: aliceblue;
+            position: absolute;
+            top:200px;
+            left:50%;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <select id="select">
+        <option value="happy.png">Happy</option>
+        <option value="akmar.png">Ak mare</option>
+        <option value="sad.png">Sad</option>
+      </select>
+ 
+    <div class="box">
+        <img src="image/happy.png" alt="">
+    </div>
+
+
+    
+</body>
+<script>
+    const box=document.querySelector("img");
+    const select=document.querySelector("#select");
+
+    select.onchange=()=>{
+        box.src=`image/${select.value}`;
+    }
+</script>
+</html>

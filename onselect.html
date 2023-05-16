@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select</title>
+
+    <style>
+        
+        ::-moz-selection {
+            color: red;
+        }
+
+        ::selection {
+            color: red;
+        }  
+
+    </style>
+</head>
+<body>
+
+
+    <textarea  id="text" cols="30" rows="10" >
+        This Select Text Area.
+    </textarea>
+    <div class="text_select">
+
+    </div>
+    
+</body>
+<script>
+    let textSelection = document.getElementById("text");
+    let div = document.querySelector(".text_select");
+    
+    
+
+    function highlightText() {
+        let textarea = event.target;
+        let selection = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+        div.innerHTML=selection;
+       
+    }
+    textSelection.onselect=highlightText;
+</script>
+</html>
