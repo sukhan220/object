@@ -19,6 +19,34 @@
             align-items: center;
             
         }
+        .editor{
+            width: 400px;
+            height: 100px;
+            background-color: #201e1e;
+            color: aliceblue;
+            font-size: medium;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            overflow: auto;
+        }
+        .btn-show{
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+            background-color: royalblue;
+            position: absolute;
+            left: 10px;
+            top:120px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .btn-show:hover{
+            border: 2px solid royalblue;
+            background-color: lightcoral;
+            color: white;
+        }
         h1{
             margin: 10px;
         }
@@ -80,6 +108,10 @@
     </style>
 </head>
 <body>
+    <div class="editor" contenteditable="true">
+
+    </div>
+    <button class="btn-show">Show</button>
     <h1>element.style.property=new style</h3>
     <div>
         <code>div <span>class=<span class="el-value">"box"</span></code>
@@ -91,20 +123,27 @@
         <button class="btn">Run</button>
 
     </div>
+
     <div class="box"></div>
     
 </body>
 <script>
-    const box = document.querySelector(".box");
+    const b = document.querySelector(".box");
     const btn = document.querySelector(".btn");
+    const editor= document.querySelector(".editor");
+    const run = document.querySelector(".btn-show");
     let con = document.querySelector("#prop");
     let val = document.querySelector("#value");
     btn.onclick=()=>{
         let pro = con.value;
         let value= val.value;
         console.log(pro,value);
-        box.style.setProperty(pro, value);
+        b.style.setProperty(pro, value);
     }
+    run.onclick=()=>{
+        eval(editor.textContent);
+    }
+    
    
 </script>
 </html>
