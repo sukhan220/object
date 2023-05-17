@@ -11,15 +11,37 @@
     --color-back-light:rgb(216, 79, 79);
     --color-front-light:aliceblue;
     --car-radius: 5.5vmin;
+    --car-wheel-front: rgb(150, 150, 106);
+    --car-wheel-back: yellow;
+    --car-frontWheel-body: yellow;
+    --car-backWheel-body: yellow;
 }
 html{
     height: 100%;
+}
+.dim{
+    clip-path: ellipse(25% 40% at 50% 50%);
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    left: 655px;
+    background-color: rebeccapurple;
+    border: 2px solid green;
+    opacity: 0.4;
 }
 body{
     /* background-color: #323232; */
     /* overflow: hidden; */
     /* background-color: lightcoral; */
     display: flex;
+}
+h1{
+    color: orangered;
+    position: absolute;
+    top:80px;
+    left: 400px;
 }
 .method{
     width: 30vmin;
@@ -51,7 +73,7 @@ body{
     width: 90%;
     height: 40px;
     color: aliceblue;
-    background-color: lightgreen;
+    background-color: rgb(111, 192, 111);
     border: none;
     border-radius: 1vmin;
     cursor: pointer;
@@ -153,10 +175,20 @@ body{
     width: var(--r);
     height:var(--r);
     border-radius: 50%;
-    border: 1.8vmin solid #2272b5;
     background-color: #fff;
     position: relative;
     /* animation: run .5s 1s linear infinite; */
+}
+.front{
+    border: 1.8vmin solid var(--car-wheel-front);
+    background-color: var(--car-frontWheel-body);
+
+}
+
+.back{
+    border: 1.8vmin solid var(--car-wheel-back);
+    background-color: var(--car-backWheel-body);
+
 }
 .wheel__circle{
     --r:2.4vmin;
