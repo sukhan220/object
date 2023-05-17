@@ -7,18 +7,23 @@ let root= document.documentElement;
 let isStart=false;
 
 const change=(c)=>{
+    console.log(c);
     let bLOff="lightcoral";
     let fLOff="green";
     root.style.setProperty("--color-car-body",c.bodyColor);
     root.style.setProperty("--color-window",c.windowColor);
+    root.style.setProperty("--car-wheel-front",c.frontWheel.tireColor);
+    root.style.setProperty("--car-wheel-back",c.backWheel.tireColor);
+    root.style.setProperty("--car-frontWheel-body",c.frontWheel.bodyColor);
+    root.style.setProperty("--car-backWheel-body",c.backWheel.bodyColor);
 
-   if(c.frontLight ==="on"){
+   if(c.frontLight.switch ==="on"){
         console.log("front");
-        root.style.setProperty("--color-front-light",c.frontLightColor);
+        root.style.setProperty("--color-front-light",c.frontLight.color);
    }
-   if(c.backLight ==="on"){
+   if(c.backLight.switch ==="on"){
     console.log("back");
-        root.style.setProperty("--color-back-light",c.backLightColor);
+        root.style.setProperty("--color-back-light",c.backLight.color);
    }
 
 }
@@ -42,15 +47,21 @@ const setModel=(model)=>{
 }
 
 const goCar=(speed)=>{
-    speed=3-speed;
-    console.log(speed);
+    if(speed==0){
+       
+        speed=3.0;
+        speed=3.0-speed;
+
+    }
+    else{
+        speed=3.0-speed;
+
+    }
     if(!isStart){
         return;
     }
     wheel.forEach(item=>{
-        if(speed<0){
-            speed*-1;
-        }
+
         item.style.animation=`run ${speed}s 1s linear infinite`;
     });
 }
